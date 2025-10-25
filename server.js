@@ -7,7 +7,8 @@ import userRoutes from "./routes/UserRoutes.js";
 const allowedOrigins = [
   "http://localhost:5173",
   "https://equipmasterapp.com",
-  "https://admin.equipmasterapp.com"
+  "https://admin.equipmasterapp.com",
+  "https://equipmasterp001.vercel.app"
 ];
 
 dotenv.config();
