@@ -2,14 +2,10 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    const conn = mongoose.connect("mongodb+srv://equipmaster_users:*************@cluster0.sdafji4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-      .then(() => console.log("✅ Mongo conectado"))
-      .catch(err => console.error("❌ Error al conectar Mongo:", err));
-
-    console.log(`Mongo conectado en: ${conn.connection.host}`);
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log(`conn 200`);
   } catch (error) {
-    console.error("Error al conectar con MongoDB Atlas:");
-    console.error(error.message);
+    console.error(`Error 500: ${error}`);
     process.exit(1);
   }
 };
