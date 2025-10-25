@@ -7,6 +7,10 @@ export const registerUser = async (req, res) => {
   if (!cedula || !nombre) {
     return res.status(400).json({ message: "Todos los campos son obligatorios" });
   }
+  
+  if (!/^\d+$/.test(cedula)) {
+    return res.status(400).json({ message: "La cédula debe contener solo números" });
+  }
 
   try {
     const existingUser = await User.findOne({ cedula });

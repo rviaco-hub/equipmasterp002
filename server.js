@@ -4,13 +4,28 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/UserRoutes.js";
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://equipmasterapp.com",
+  "https://admin.equipmasterapp.com"
+];
+
 dotenv.config();
 
 const app = express();
 connectDB();
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS no permitido"));
+      }
+    },
+    credentials: true,
+  }));
 app.use(express.json());
 
 // Rutas
@@ -18,4 +33,4 @@ app.use("/api/users", userRoutes);
 
 // Puerto
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT} para equipMaster`));
+app.listen(PORT, () => console.log(`server 200`));
