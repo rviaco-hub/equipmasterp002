@@ -28,6 +28,8 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { cedula } = req.body;
+    console.log(cedula);
+    
 
     if (!/^\d+$/.test(cedula)) {
       return res.status(400).json({ error: "La cédula debe ser numérica" });
