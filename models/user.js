@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema(
       trim: true,
       minlength: [3, "El nombre es demasiado corto"],
     },
+    rol: {
+      type: Boolean,
+      required: false,
+    },
   },
   { timestamps: true }
 );

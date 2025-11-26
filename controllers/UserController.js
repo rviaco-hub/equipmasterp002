@@ -2,13 +2,15 @@ import User from "../models/user.js";
 
 // Registrar nuevo usuario
 export const registerUser = async (req, res) => {
-  const { cedula, nombre } = req.body;
+  const { cedula, nombre, rol } = req.body;
 
   if (!cedula || !nombre) {
+    console.error("reg-1");    
     return res.status(400).json({ message: "Todos los campos son obligatorios" });
   }
-  
+
   if (!/^\d+$/.test(cedula)) {
+    console.error("reg-2");    
     return res.status(400).json({ message: "La cédula debe contener solo números" });
   }
 
@@ -18,7 +20,7 @@ export const registerUser = async (req, res) => {
       return res.status(400).json({ message: "El usuario ya está registrado" });
     }
 
-    const newUser = new User({ cedula, nombre });
+    const newUser = new User({ cedula, nombre, rol });
     await newUser.save();
 
     res.status(201).json({ message: "Usuario registrado con éxito", user: newUser });
