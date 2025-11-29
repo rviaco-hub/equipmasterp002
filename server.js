@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/UserRoutes.js";
+import capRoutes from "./routes/videos/capacitacion.js";
 
 const allowedOrigins = [
   "http://localhost:5173",
@@ -15,6 +16,7 @@ dotenv.config();
 
 const app = express();
 connectDB();
+app.use("/data", express.static("public/data"));
 
 // Middlewares
 app.use(cors({
@@ -31,6 +33,8 @@ app.use(express.json());
 
 // Rutas
 app.use("/api/users", userRoutes);
+app.use("/api/videos/capacitacion", capRoutes);
+
 
 // Puerto
 const PORT = process.env.PORT || 5000;
