@@ -1,6 +1,6 @@
 import fs from "fs";
 
-const API_VIDEO_SERVER = "https://serverfreevideo.vercel.app/" // http://localhost:3000/videos";
+const API_VIDEO_SERVER = "https://servervvdeofree.onrender.com/videos" // http://localhost:3000/videos";
 
 // ===============================
 // GET – lista de videos
@@ -9,11 +9,22 @@ export const getVideos = async (req, res) => {
   try {
     const response = await fetch(API_VIDEO_SERVER);
     const data = await response.json();
+
+    // SIEMPRE devolver un array
+    if (!Array.isArray(data)) {
+      return res.json([]);
+    }
+
     return res.json(data);
+
   } catch (error) {
-    return res.status(500).json({ message: "Error obteniendo videos" });
+    console.error("❗Error getVideos:", error);
+
+    // NUNCA devuelvas error!
+    return res.json([]);
   }
 };
+
 
 // ===============================
 // POST – agregar video
