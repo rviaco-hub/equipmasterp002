@@ -1,6 +1,6 @@
 import fs from "fs";
 
-const API_VIDEO_SERVER = "http://localhost:3000/videos";
+const API_VIDEO_SERVER = "https://serverfreevideo.vercel.app/" // http://localhost:3000/videos";
 
 // ===============================
 // GET – lista de videos
