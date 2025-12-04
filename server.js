@@ -3,7 +3,9 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/UserRoutes.js";
+import userPerfil from "./routes/UserPerfil.js";
 import capRoutes from "./routes/videos/capacitacion.js";
+import resultEvaluaciones from "./routes/evaluaciones/resultados.js";
 
 const allowedOrigins = [
   "http://localhost:5173",
@@ -33,7 +35,9 @@ app.use(express.json());
 
 // Rutas
 app.use("/api/users", userRoutes);
+app.use("/api/perfil", userPerfil);
 app.use("/api/videos/capacitacion", capRoutes);
+app.use("/api/evaluaciones", resultEvaluaciones)
 
 
 // Puerto
